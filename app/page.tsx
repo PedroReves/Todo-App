@@ -7,16 +7,14 @@ import { useState } from 'react'
 
 export default function Home() {
   
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState<string>('')
   const [todoList, setTodoList] = useState<string[]>([])
   const [editingTaskId,setEditingTaskId] = useState(null)
   
-  function handleSubmit(e: any) {
+  const handleSubmit = (e: any):void => {
     e.preventDefault()
 
-    if(input === '') {
-      return
-    }
+    if(input === '') { return }
     
     const id = createId()
 
@@ -31,25 +29,20 @@ export default function Home() {
     setInput('')
   }
 
-  const handleCompleteOrDelete = (id: string) => {
+  const handleCompleteOrDelete = (id: string):void => {
     const updatedList = todoList.filter((task: any) => task.id !== id);
     setTodoList(updatedList);
   };
 
-  const handleTaskNameEdit = (taskId: string, newName: string) => {
+  const handleTaskNameEdit = (taskId: string, newName: string):void => {
     const updatedList = todoList.map((task: any) => {
-      if (task.id === taskId) {
-        return { ...task, task: newName };
-      }
+      if (task.id === taskId) { return { ...task, task: newName }};
       return task;
     });
   
     setTodoList(updatedList);
   };
   
-
-
-
   return (
     <section className='h-screen flex flex-col items-center justify-center bg-lightGray'>
       <div className='bg-white rounded-xl'>
@@ -72,7 +65,7 @@ export default function Home() {
                         setEditingTaskId(null)
                       }}
                     />
-                  ) :  (
+                  ) : (
                     todo.task
                   )}
                 </li>
@@ -81,8 +74,7 @@ export default function Home() {
                   <span className="material-symbols-outlined text-white cursor-pointer" onClick={() => setEditingTaskId(todo.id)}>stylus</span>
                   <span className="material-symbols-outlined text-strongGreen cursor-pointer" onClick={() => handleCompleteOrDelete(todo.id)}>check</span>  
                 </div>
-              </div>
-                
+              </div> 
             )
           })}
         </ul>
@@ -90,5 +82,3 @@ export default function Home() {
     </section>
   )
 }
-
-/**/
