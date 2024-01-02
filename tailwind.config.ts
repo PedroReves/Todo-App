@@ -11,6 +11,10 @@ const config: Config = {
       colors: {
         'grayishBlue': '#3C6E71',
         'lightGray': '#D9D9D9',
+        'darkGray': '#353535',
+        'strongRed': '#FF2C2C',
+        'strongGreen': '#24FF20',
+        'darkGray2': '#414141',
       }
     },
   },
